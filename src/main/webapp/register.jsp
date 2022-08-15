@@ -2,8 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>register</title>
+    <title>注册</title>
     <link href="css/login_style.css" rel="stylesheet"/>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -14,10 +19,12 @@
         </div>
         <form action="index_register" method="post">
             <div class="input">
-                <input type="text" required="required" placeholder="创造你的账号" name="userName-1">
+                <input type="text" required="required" placeholder="创造你的账号" name="username">
+                <span>${usernameError}</span>
             </div>
+
             <div class="input">
-                <input type="text" required="required" placeholder="创造你的密码" name="password-1">
+                <input type="text" required="required" placeholder="创造你的密码" name="password">
             </div>
             <div id="radioA">
                 <input type="radio" name="type" value="1" required="required">商家&nbsp;

@@ -1,0 +1,43 @@
+.input{
+    margin-bottom: 15px;
+}
+.input input{
+    background-color: darkgray;
+    width: 400px;
+    height: 25px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    padding-left: 20px;
+}
+.searcha{
+    height: 30px;
+    padding-left: 30%;
+    line-height: 1;
+}
+.search{
+    float: left;
+    padding-right: 10px;
+}
+.search button{
+    border-radius: 20px;
+    padding: 0 10px;
+    border: 0;
+    outline: 0;
+    color: white;
+    background-color: gray;
+}
+.search button:hover{
+    background-color: rgba(102,217,239,.7);
+    color: #000000;
+    transition: background-color .5s,color .5s;
+    text-shadow: 0 0 5px #33b0a6;
+}
+.table_1{
+
+}
+.table_1 tr td:hover{
+    background-color: #b4b4b4;
+    color: #000000;
+    transition: background-color .5s,color .5s;
+}

@@ -2,8 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>login</title>
+    <title>商品管理系统</title>
     <link href="css/login_style.css" rel="stylesheet"/>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -14,9 +19,11 @@
         <form action="index_login" method="post">
             <div class="input">
                 <input type="text" placeholder="输入你的账号" name="username" required="required">
+                <span>${usernameError}</span>
             </div>
             <div class="input">
                 <input type="password" placeholder="输入你的密码" name="password" required="required">
+                <span>${passwordError}</span>
             </div>
 
             <div id="login" style="text-align: center">
