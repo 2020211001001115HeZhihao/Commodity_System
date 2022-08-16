@@ -10,6 +10,30 @@ public class Goods {
     int Goods_now;
     int Goods_from;
     String Goods_from2;
+    public  Goods(){
+
+    }
+    public void Goods2(String goods_name, String goods_type, int goods_number, int goods_price, int goods_father, int goods_now, int goods_from, String goods_from2) {
+        Goods_name = goods_name;
+        Goods_type = goods_type;
+        Goods_number = goods_number;
+        Goods_price = goods_price;
+        Goods_father = goods_father;
+        Goods_now = goods_now;
+        Goods_from = goods_from;
+        Goods_from2 = goods_from2;
+    }
+    public Goods(int goods_id, String goods_name, String goods_type, int goods_number, int goods_price, int goods_father, int goods_now, int goods_from, String goods_from2) {
+        Goods_id = goods_id;
+        Goods_name = goods_name;
+        Goods_type = goods_type;
+        Goods_number = goods_number;
+        Goods_price = goods_price;
+        Goods_father = goods_father;
+        Goods_now = goods_now;
+        Goods_from = goods_from;
+        Goods_from2 = goods_from2;
+    }
 
     @Override
     public String toString() {

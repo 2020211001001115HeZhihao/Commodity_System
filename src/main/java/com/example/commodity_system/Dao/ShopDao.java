@@ -62,7 +62,32 @@ public class ShopDao {
             return false;
         }
     }
-
+    //修改资金
+    public boolean updateMoney(Connection con,int sum, int id) throws SQLException {
+        String sql = "update Shop set Shop_money='"+sum+ "' where Shop_id='"+ id+"'";
+        try {
+            PreparedStatement ps = null;
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    //修改账单数量
+    public boolean updateNumber(Connection con,int sum, int id) throws SQLException {
+        String sql = "update Shop set Shop_number='"+sum+ "' where Shop_id='"+ id+"'";
+        try {
+            PreparedStatement ps = null;
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     //通过id寻找全部
     public Shop findByid(Connection con,int id) throws SQLException {
         String sql = "select * from Shop where Shop_id = '"+id+"'";

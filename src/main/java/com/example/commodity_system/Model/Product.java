@@ -7,6 +7,15 @@ public class Product {
     int Pro_father;
     int Pro_price;
     int Pro_now;
+    String Pro_father2;
+
+    public String getPro_father2() {
+        return Pro_father2;
+    }
+
+    public void setPro_father2(String pro_father2) {
+        Pro_father2 = pro_father2;
+    }
 
     @Override
     public String toString() {

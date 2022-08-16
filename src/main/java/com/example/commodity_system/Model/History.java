@@ -11,11 +11,27 @@ public class History {
     String His_goodstype;
     int His_goodsnumber;
     int His_price;
-    Date His_time;
+    String His_time;
     String His_human;
     int His_fromid;
     String His_fromname;
     int His_type;
+    public History(){}
+    public History(int his_id, int his_shopid, String his_shopname, int his_goodsid, String his_goodsname, String his_goodstype, int his_goodsnumber, int his_price, String his_time, String his_human, int his_fromid, String his_fromname, int his_type) {
+        His_id = his_id;
+        His_shopid = his_shopid;
+        His_shopname = his_shopname;
+        His_goodsid = his_goodsid;
+        His_goodsname = his_goodsname;
+        His_goodstype = his_goodstype;
+        His_goodsnumber = his_goodsnumber;
+        His_price = his_price;
+        His_time = his_time;
+        His_human = his_human;
+        His_fromid = his_fromid;
+        His_fromname = his_fromname;
+        His_type = his_type;
+    }
 
     @Override
     public String toString() {
@@ -100,11 +116,11 @@ public class History {
         His_price = his_price;
     }
 
-    public Date getHis_time() {
+    public String getHis_time() {
         return His_time;
     }
 
-    public void setHis_time(Date his_time) {
+    public void setHis_time(String his_time) {
         His_time = his_time;
     }
 
