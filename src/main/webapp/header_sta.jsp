@@ -24,7 +24,7 @@
                 <div class="design">
                     <a href="Sta_my.jsp" >我的信息</a>
                     <a href="#" >商品展示</a>
-                    <a href="#" >账单查询</a>
+                    <a href="${pageContext.request.contextPath}/HistoryServlet?flag=staff" >账单查询</a>
                     <a href="#" >寻找工作</a>
                     <a href="exit.jsp" >退出账号</a>
                 </div>

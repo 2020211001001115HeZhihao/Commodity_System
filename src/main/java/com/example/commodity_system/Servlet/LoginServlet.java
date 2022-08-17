@@ -55,6 +55,8 @@ public class LoginServlet extends HttpServlet {
                     ShopDao op_shop = new ShopDao();
                     Shop shop = op_shop.findByid(con,id);
                     request.getSession().setAttribute("shop_all",shop);
+                    List<Goods> list = op_shop.findAllByid(con,id);
+                    request.getSession().setAttribute("goods_all",list);
                     request.getRequestDispatcher("Shop_main.jsp").forward(request,response);
                 }
                 else if(type == 2){
@@ -66,6 +68,7 @@ public class LoginServlet extends HttpServlet {
                     request.getRequestDispatcher("Fac_main.jsp").forward(request,response);
                 }
                 else if(type == 3){
+                    request.getSession().setAttribute("staff_id",id);
                     StaDao op_sta = new StaDao();
                     Sta sta = op_sta.findByid(con,id);
                     request.getSession().setAttribute("sta_all",sta);

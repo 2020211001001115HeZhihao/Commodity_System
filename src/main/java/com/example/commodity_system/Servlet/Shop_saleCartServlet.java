@@ -1,6 +1,10 @@
 package com.example.commodity_system.Servlet;
 
+import com.example.commodity_system.Dao.GoodsDao;
 import com.example.commodity_system.Dao.ProDao;
+import com.example.commodity_system.Model.Cart;
+import com.example.commodity_system.Model.Cart2;
+import com.example.commodity_system.Model.Goods;
 import com.example.commodity_system.Model.Product;
 
 import javax.servlet.*;
@@ -9,10 +13,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet(name = "Shop_addGoods_firstServlet", value = "/Shop_addGoods_firstServlet")
-public class Shop_addGoods_firstServlet extends HttpServlet {
+@WebServlet(name = "Shop_saleCartServlet", value = "/Shop_saleCartServlet")
+public class Shop_saleCartServlet extends HttpServlet {
     Connection con = null;
     public void init()  {
         con = (Connection)getServletContext().getAttribute("con");
@@ -24,14 +27,19 @@ public class Shop_addGoods_firstServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        ProDao op_pro = new ProDao();
+        int id = Integer.parseInt(request.getParameter("id"));
+        Cart2 cart = (Cart2) request.getSession().getAttribute("cart2");
+        if (cart == null) {
+            cart = new Cart2();
+            request.getSession().setAttribute("cart2", cart);
+        }
+        GoodsDao op_goods = new GoodsDao();
         try {
-            List<Product> list = op_pro.findAllPro(con);
-            request.setAttribute("addGoods",list);
-            request.getRequestDispatcher("Shop_addProduct.jsp").forward(request,response);
+            Goods goods = op_goods.findByGoodsid(con,id);
+            cart.addGoods(goods);
+            request.getRequestDispatcher("Shop_saleListCart.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

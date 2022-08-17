@@ -1,7 +1,8 @@
 package com.example.commodity_system.Servlet;
 
-import com.example.commodity_system.Dao.ProDao;
-import com.example.commodity_system.Model.Product;
+import com.example.commodity_system.Dao.GoodsDao;
+import com.example.commodity_system.Dao.ShopDao;
+import com.example.commodity_system.Model.Goods;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,8 +12,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "Shop_addGoods_firstServlet", value = "/Shop_addGoods_firstServlet")
-public class Shop_addGoods_firstServlet extends HttpServlet {
+@WebServlet(name = "Shop_changePriceServlet", value = "/Shop_changePriceServlet")
+public class Shop_changePriceServlet extends HttpServlet {
     Connection con = null;
     public void init()  {
         con = (Connection)getServletContext().getAttribute("con");
@@ -24,11 +25,17 @@ public class Shop_addGoods_firstServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        ProDao op_pro = new ProDao();
+        String sum = request.getParameter("bn");
+        String id = request.getParameter("bi");
+        int idd = (int) request.getSession().getAttribute("login_id");
+        GoodsDao op_goods = new GoodsDao();
+        ShopDao op_shop = new ShopDao();
+
         try {
-            List<Product> list = op_pro.findAllPro(con);
-            request.setAttribute("addGoods",list);
-            request.getRequestDispatcher("Shop_addProduct.jsp").forward(request,response);
+            op_goods.updatePrice(con,sum,id);
+            List<Goods> list = op_shop.findAllByid(con,idd);
+            request.getSession().setAttribute("goods_all",list);
+            response.sendRedirect("Shop_main.jsp");
         } catch (SQLException e) {
             e.printStackTrace();
         }

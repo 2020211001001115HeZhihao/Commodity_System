@@ -1,5 +1,6 @@
 package com.example.commodity_system.Dao;
 
+import com.example.commodity_system.Model.Goods;
 import com.example.commodity_system.Model.Shop;
 import com.example.commodity_system.Model.User;
 
@@ -7,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShopDao {
     //新建账号
@@ -88,7 +91,7 @@ public class ShopDao {
             return false;
         }
     }
-    //通过id寻找全部
+    //通过id寻找个体
     public Shop findByid(Connection con,int id) throws SQLException {
         String sql = "select * from Shop where Shop_id = '"+id+"'";
         ResultSet rs = con.createStatement().executeQuery(sql);
@@ -107,5 +110,26 @@ public class ShopDao {
             shop.setShop_goods(rs.getInt("Shop_goods"));
         }
         return shop;
+    }
+    //通过id寻找全部
+    public List<Goods> findAllByid(Connection con, int id) throws SQLException {
+        String sql = "select * from Shop_goods where Goods_father = '"+id+"' order by Goods_now desc";
+        ResultSet rs = con.createStatement().executeQuery(sql);
+        List<Goods> list =  new ArrayList<>();
+        while (rs.next()){
+            int Goods_id = rs.getInt(1);
+            String Goods_name = rs.getString(2);
+            String Goods_type = rs.getString(3);
+            int Goods_number = rs.getInt(4);
+            int Goods_price = rs.getInt(5);
+            int Goods_father = rs.getInt(6);
+            int Goods_now = rs.getInt(7);
+            int Goods_from = rs.getInt(8);
+            String Goods_from2 = rs.getString(9);
+            Goods goods = new Goods(Goods_id,Goods_name,Goods_type,Goods_number,Goods_price,
+                    Goods_father,Goods_now,Goods_from,Goods_from2);
+            list.add(goods);
+        }
+        return list;
     }
 }

@@ -24,7 +24,7 @@
                 <div class="design">
                     <a href="Shop_my.jsp" >我的信息</a>
                     <a href="Shop_main.jsp" >商品展示</a>
-                    <a href="#" >账单查询</a>
+                    <a href="${pageContext.request.contextPath}/HistoryServlet?flag=shop" >账单查询</a>
                     <a href="#" >员工管理</a>
                     <a href="exit.jsp" >退出账号</a>
                 </div>
