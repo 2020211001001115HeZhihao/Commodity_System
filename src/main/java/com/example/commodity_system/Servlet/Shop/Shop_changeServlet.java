@@ -1,4 +1,4 @@
-package com.example.commodity_system.Servlet;
+package com.example.commodity_system.Servlet.Shop;
 
 import com.example.commodity_system.Dao.ShopDao;
 import com.example.commodity_system.Model.Shop;

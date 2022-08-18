@@ -9,6 +9,17 @@ public class Sta {
     int Sta_shop;
     String Sta_message;
 
+    public Sta(){}
+    public Sta(int sta_id, String sta_name, String sta_phone, String sta_sex, String sta_address, int sta_shop, String sta_message) {
+        Sta_id = sta_id;
+        Sta_name = sta_name;
+        Sta_phone = sta_phone;
+        Sta_sex = sta_sex;
+        Sta_address = sta_address;
+        Sta_shop = sta_shop;
+        Sta_message = sta_message;
+    }
+
     @Override
     public String toString() {
         return "Sta{" +

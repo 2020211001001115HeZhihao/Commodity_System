@@ -1,4 +1,4 @@
-package com.example.commodity_system.Servlet;
+package com.example.commodity_system.Servlet.Shop;
 
 import com.example.commodity_system.Dao.HisDao;
 import com.example.commodity_system.Model.History;
@@ -32,32 +32,38 @@ public class Shop_historySearchServlet extends HttpServlet {
         try {
             if (search == ""){
                 List<History> list = op_his.findAllByShop(con,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("shop_history_page",1);
                 request.getRequestDispatcher("Shop_history.jsp").forward(request,response);
             }
             else if(key.equals("id")){
                 List<History> list = op_his.findAllByShopHistoryid(con,search,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("shop_history_page",1);
                 request.getRequestDispatcher("Shop_history.jsp").forward(request,response);
             }
             else if(key.equals("name")){
                 List<History> list = op_his.findAllByShopGoodsName(con,search,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("shop_history_page",1);
                 request.getRequestDispatcher("Shop_history.jsp").forward(request,response);
             }
             else if(key.equals("type")){
                 List<History> list = op_his.findAllByShopGoodsType(con,search,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("shop_history_page",1);
                 request.getRequestDispatcher("Shop_history.jsp").forward(request,response);
             }
             else if(key.equals("factory")){
                 List<History> list = op_his.findAllByShopFactoryName(con,search,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("shop_history_page",1);
                 request.getRequestDispatcher("Shop_history.jsp").forward(request,response);
             }
             else if(key.equals("human")){
                 List<History> list = op_his.findAllByShopHuman(con,search,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("shop_history_page",1);
                 request.getRequestDispatcher("Shop_history.jsp").forward(request,response);
             }
         } catch (SQLException e) {

@@ -111,6 +111,50 @@ public class ShopDao {
         }
         return shop;
     }
+
+    public List<Shop> findAllShop(Connection con) throws SQLException {
+        String sql = "select * from Shop";
+        ResultSet rs = con.createStatement().executeQuery(sql);
+        List<Shop> list =  new ArrayList<>();
+        while (rs.next()){
+            int Shop_id = rs.getInt("Shop_id");
+            String Shop_name = rs.getString("Shop_name");
+            String Shop_address = rs.getString("Shop_address");
+            String Shop_boss = rs.getString("Shop_boss");
+            String Shop_bossp = rs.getString("Shop_bossp");
+            String Shop_phone = rs.getString("Shop_phone");
+            String Shop_message = rs.getString("Shop_message");
+            int Shop_money = rs.getInt("Shop_money");
+            int Shop_number = rs.getInt("Shop_number");
+            int Shop_goods = rs.getInt("Shop_goods");
+            Shop shop = new Shop(Shop_id,Shop_name,Shop_address,Shop_boss,Shop_bossp,Shop_phone,Shop_message,Shop_money
+            ,Shop_number,Shop_goods);
+            list.add(shop);
+        }
+        return list;
+    }
+
+    public List<Shop> findAllShopName(Connection con,String search) throws SQLException {
+        String sql = "select * from Shop where Shop_name like '%"+search+"%'";
+        ResultSet rs = con.createStatement().executeQuery(sql);
+        List<Shop> list =  new ArrayList<>();
+        while (rs.next()){
+            int Shop_id = rs.getInt("Shop_id");
+            String Shop_name = rs.getString("Shop_name");
+            String Shop_address = rs.getString("Shop_address");
+            String Shop_boss = rs.getString("Shop_boss");
+            String Shop_bossp = rs.getString("Shop_bossp");
+            String Shop_phone = rs.getString("Shop_phone");
+            String Shop_message = rs.getString("Shop_message");
+            int Shop_money = rs.getInt("Shop_money");
+            int Shop_number = rs.getInt("Shop_number");
+            int Shop_goods = rs.getInt("Shop_goods");
+            Shop shop = new Shop(Shop_id,Shop_name,Shop_address,Shop_boss,Shop_bossp,Shop_phone,Shop_message,Shop_money
+                    ,Shop_number,Shop_goods);
+            list.add(shop);
+        }
+        return list;
+    }
     //通过id寻找全部
     public List<Goods> findAllByid(Connection con, int id) throws SQLException {
         String sql = "select * from Shop_goods where Goods_father = '"+id+"' order by Goods_now desc";

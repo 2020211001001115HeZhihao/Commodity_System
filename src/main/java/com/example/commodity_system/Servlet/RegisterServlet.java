@@ -81,9 +81,9 @@ public class RegisterServlet extends HttpServlet {
                     sta.setSta_sex("男");
                     sta.setSta_shop(0);
                     StaDao op_sta = new StaDao();
-                    System.out.println(sta.toString());
                     op_sta.insert(con,sta);
                     request.getSession().setAttribute("sta_all",sta);
+                    request.getSession().setAttribute("staff_id",id);
                     request.getRequestDispatcher("Sta_change.jsp").forward(request,response);
                 }
             }

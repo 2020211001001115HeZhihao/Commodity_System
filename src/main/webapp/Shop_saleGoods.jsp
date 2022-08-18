@@ -49,6 +49,9 @@
                     <c:if test="${proall.getGoods_now() == 1}">
                         <button onclick="location.href='${pageContext.request.contextPath}/Shop_saleCartServlet?id=${proall.getGoods_id()}'">添加</button>
                     </c:if>
+                    <c:if test="${proall.getGoods_now() == 0}">
+                        <span>缺货</span>
+                    </c:if>
                 </td>
             </tr>
         </c:forEach>

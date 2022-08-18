@@ -1,4 +1,4 @@
-package com.example.commodity_system.Servlet;
+package com.example.commodity_system.Servlet.Sta;
 
 import com.example.commodity_system.Dao.StaDao;
 import com.example.commodity_system.Model.Sta;
@@ -21,7 +21,6 @@ public class Sta_changeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

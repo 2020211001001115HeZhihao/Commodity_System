@@ -1,4 +1,4 @@
-package com.example.commodity_system.Servlet;
+package com.example.commodity_system.Servlet.Fac;
 
 import com.example.commodity_system.Dao.HisDao;
 import com.example.commodity_system.Model.History;
@@ -32,22 +32,26 @@ public class Fac_historySearchServlet extends HttpServlet {
         try {
             if (search == ""){
                 List<History> list = op_his.findAllByFac(con,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("fac_history_page",1);
                 request.getRequestDispatcher("Fac_history.jsp").forward(request,response);
             }
             else if(key.equals("name")){
                 List<History> list = op_his.findAllByShopFacGoodsName(con,search,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("fac_history_page",1);
                 request.getRequestDispatcher("Fac_history.jsp").forward(request,response);
             }
             else if(key.equals("type")){
                 List<History> list = op_his.findAllByShopFacGoodsType(con,search,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("fac_history_page",1);
                 request.getRequestDispatcher("Fac_history.jsp").forward(request,response);
             }
             else if(key.equals("shop")){
                 List<History> list = op_his.findAllByShopFacShopName(con,search,id);
-                request.setAttribute("his_all",list);
+                request.getSession().setAttribute("his_all",list);
+                request.setAttribute("fac_history_page",1);
                 request.getRequestDispatcher("Fac_history.jsp").forward(request,response);
             }
         } catch (SQLException e) {

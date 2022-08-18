@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet(name = "HistoryServlet", value = "/HistoryServlet")
 public class HistoryServlet extends HttpServlet {
@@ -28,17 +29,24 @@ public class HistoryServlet extends HttpServlet {
         String flag = request.getParameter("flag");
         int id = (int) request.getSession().getAttribute("login_id");
         HisDao op_his = new HisDao();
-
+        String fir = request.getParameter("fir");
+        int page = Integer.parseInt(request.getParameter("page"));
         try {
-
             if (flag.equals("shop")){
-                List<History> list = op_his.findAllByShop(con,id);
-                request.setAttribute("his_all",list);
+
+                if (Objects.equals(fir,"0")){
+                    List<History> list = op_his.findAllByShop(con,id);
+                    request.getSession().setAttribute("his_all",list);
+                }
+                request.setAttribute("shop_history_page",page);
                 request.getRequestDispatcher("Shop_history.jsp").forward(request,response);
             }
             else if(flag.equals("factory")){
-                List<History> list = op_his.findAllByFac(con,id);
-                request.setAttribute("his_all",list);
+                if (Objects.equals(fir,"0")) {
+                    List<History> list = op_his.findAllByFac(con, id);
+                    request.getSession().setAttribute("his_all", list);
+                }
+                request.setAttribute("fac_history_page",page);
                 request.getRequestDispatcher("Fac_history.jsp").forward(request,response);
             }
         } catch (SQLException e) {

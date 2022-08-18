@@ -1,3 +1,8 @@
+<%@ page import="com.example.commodity_system.Model.Goods" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Objects" %>
+<%@ page import="com.example.commodity_system.Model.History" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -27,17 +32,31 @@
 <div style="text-align: center;margin-left: 40px">
     <table border="1px" cellspacing="0">
         <tr>
-            <th>编号</th>
-            <th>商品</th>
-            <th>类型</th>
-            <th>厂商</th>
-            <th>数量</th>
-            <th>总价</th>
-            <th>时间</th>
-            <th>执行人</th>
-            <th>操作</th>
+            <th style="width: 4em;">编号</th>
+            <th style="width: 7em;">商品</th>
+            <th style="width: 5em;">类型</th>
+            <th style="width: 6em;">厂商</th>
+            <th style="width: 4em;">数量</th>
+            <th style="width: 5em;">总价</th>
+            <th style="width: 12em;">时间</th>
+            <th style="width: 5em;">执行人</th>
+            <th style="width: 3em;">操作</th>
         </tr>
-        <c:forEach items="${his_all}" var="proall">
+        <%
+            List<History> list = (List<History>) request.getSession().getAttribute("his_all");
+            int history_page = (int) request.getAttribute("shop_history_page");
+            int list_len = list.size();
+            int max_page = list_len / 15; if(!Objects.equals(list_len%15,0)) max_page = max_page + 1;
+            List<History> ans = new ArrayList<>();
+            int left = (history_page-1)*15; int right;
+            if(left + 14 >= list_len) right = list_len-1;
+            else right = left+14;
+            for (int i = left ; i <= right;i++){
+                ans.add(list.get(i));
+            }
+            request.setAttribute("ave",ans);
+        %>
+        <c:forEach items="${ave}" var="proall">
             <tr>
                 <td style="padding-left: 5px;padding-top: 5px;padding-bottom: 5px"><div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 4em;" title="${proall.getHis_id()}">${proall.getHis_id()}</div></td>
                 <td style="padding-left: 5px;padding-top: 5px;padding-bottom: 5px"><div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 7em;" title="${proall.getHis_goodsname()}">${proall.getHis_goodsname()}</div></td>
@@ -51,7 +70,29 @@
                 <c:if test="${proall.getHis_type() == 2}"><td style="padding-left: 5px;padding-top: 5px;padding-bottom: 5px"><div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 3em;" title="出货">出货</div></td></c:if>
             </tr>
         </c:forEach>
-    </table>
+    </table><br>
 </div>
-
+    <style>
+        .Shop_history_button{
+            margin-left: 7px;
+        }
+    </style>
+    <span style="margin-left: 40px">一共有<span style="color: #2727fd"><%=max_page%></span>页&nbsp;
+        当前第<span style="color: #ff1414"><%=history_page%></span>页</span>
+    <button class="Shop_history_button" onclick="location.href='${pageContext.request.contextPath}/HistoryServlet?fir=1&flag=shop&page=1'">首页</button>
+    <button class="Shop_history_button" onclick="prePage()">上一页</button>
+    <button class="Shop_history_button" onclick="nextPage()">下一页</button>
+    <button class="Shop_history_button" onclick="location.href='${pageContext.request.contextPath}/HistoryServlet?fir=1&flag=shop&page=<%=max_page%>'">尾页</button>
+<script type="text/javascript">
+    var now_page = <%=history_page%>;
+    var maxx = <%=max_page%>;
+    function prePage(){
+        if (now_page == 1) alert("已经是首页");
+        else window.location="${pageContext.request.contextPath}/HistoryServlet?fir=1&flag=shop&page="+(now_page-1);
+    }
+    function nextPage(){
+        if (now_page == maxx) alert("已经是尾页");
+        else window.location="${pageContext.request.contextPath}/HistoryServlet?fir=1&flag=shop&page="+(now_page+1);
+    }
+</script>
 <%@include file="footer.jsp"%>

@@ -14,8 +14,8 @@
         欢迎您，${sta_all.getSta_name()}
     </h4>
 </div>
-<div class="container">
-    <div class="row">
+<div class="container1">
+    <div class="row1">
         <div class="runoob-col-md2">
             <div class="sidebar-box">
                 <div class="tab">
@@ -23,9 +23,11 @@
                 </div>
                 <div class="design">
                     <a href="Sta_my.jsp" >我的信息</a>
-                    <a href="#" >商品展示</a>
-                    <a href="${pageContext.request.contextPath}/HistoryServlet?flag=staff" >账单查询</a>
-                    <a href="#" >寻找工作</a>
+                    <c:if test="${sta_all.getSta_shop() != 0}">
+                        <a href="Shop_main.jsp" >商品展示</a>
+                        <a href="${pageContext.request.contextPath}/HistoryServlet?fir=0&flag=shop&page=1" >账单查询</a>
+                    </c:if>
+                    <a href="${pageContext.request.contextPath}/Sta_findWorkSearch?flag=0" >寻找工作</a>
                     <a href="exit.jsp" >退出账号</a>
                 </div>
             </div>

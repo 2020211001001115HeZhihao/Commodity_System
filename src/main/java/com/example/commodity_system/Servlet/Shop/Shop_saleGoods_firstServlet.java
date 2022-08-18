@@ -1,6 +1,5 @@
-package com.example.commodity_system.Servlet;
+package com.example.commodity_system.Servlet.Shop;
 
-import com.example.commodity_system.Dao.GoodsDao;
 import com.example.commodity_system.Dao.ShopDao;
 import com.example.commodity_system.Model.Goods;
 
@@ -12,8 +11,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "Shop_changePriceServlet", value = "/Shop_changePriceServlet")
-public class Shop_changePriceServlet extends HttpServlet {
+@WebServlet(name = "Shop_saleGoods_firstServlet", value = "/Shop_saleGoods_firstServlet")
+public class Shop_saleGoods_firstServlet extends HttpServlet {
     Connection con = null;
     public void init()  {
         con = (Connection)getServletContext().getAttribute("con");
@@ -25,20 +24,15 @@ public class Shop_changePriceServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String sum = request.getParameter("bn");
-        String id = request.getParameter("bi");
-        int idd = (int) request.getSession().getAttribute("login_id");
-        GoodsDao op_goods = new GoodsDao();
         ShopDao op_shop = new ShopDao();
+        int id = (int) request.getSession().getAttribute("login_id");
 
         try {
-            op_goods.updatePrice(con,sum,id);
-            List<Goods> list = op_shop.findAllByid(con,idd);
+            List<Goods> list = op_shop.findAllByid(con,id);
             request.getSession().setAttribute("goods_all",list);
-            response.sendRedirect("Shop_main.jsp");
+            request.getRequestDispatcher("Shop_saleGoods.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

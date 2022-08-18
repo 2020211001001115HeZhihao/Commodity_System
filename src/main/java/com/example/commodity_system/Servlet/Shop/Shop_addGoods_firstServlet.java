@@ -1,15 +1,18 @@
-package com.example.commodity_system.Servlet;
+package com.example.commodity_system.Servlet.Shop;
 
-import com.example.commodity_system.Model.Cart;
+import com.example.commodity_system.Dao.ProDao;
+import com.example.commodity_system.Model.Product;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
-@WebServlet(name = "Shop_addCartdeleteServlet", value = "/Shop_addCartdeleteServlet")
-public class Shop_addCartdeleteServlet extends HttpServlet {
+@WebServlet(name = "Shop_addGoods_firstServlet", value = "/Shop_addGoods_firstServlet")
+public class Shop_addGoods_firstServlet extends HttpServlet {
     Connection con = null;
     public void init()  {
         con = (Connection)getServletContext().getAttribute("con");
@@ -21,13 +24,14 @@ public class Shop_addCartdeleteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String id = request.getParameter("id");
-        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        ProDao op_pro = new ProDao();
         try {
-            cart.getPromap().remove(id);
-            request.getRequestDispatcher("Shop_addListCart.jsp").forward(request, response);
-        } catch (Exception e) {
+            List<Product> list = op_pro.findAllPro(con);
+            request.setAttribute("addGoods",list);
+            request.getRequestDispatcher("Shop_addProduct.jsp").forward(request,response);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 }

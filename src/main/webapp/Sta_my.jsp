@@ -7,6 +7,7 @@
 <table border="0" style="text-align: center" width="500px">
     <tr><td>员工编号</td><td>${sta_all.getSta_id()}</td></tr>
     <tr><td>员工姓名</td><td>${sta_all.getSta_name()}</td></tr>
+    <tr><td>员工电话</td><td>${sta_all.getSta_phone()}</td></tr>
     <tr><td>员工性别</td><td>${sta_all.getSta_sex()}</td></tr>
     <tr><td>员工地址</td><td>${sta_all.getSta_address()}</td></tr>
     <tr><td>员工介绍</td><td>${sta_all.getSta_message()}</td></tr>

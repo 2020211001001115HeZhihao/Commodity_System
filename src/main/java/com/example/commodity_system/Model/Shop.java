@@ -11,6 +11,20 @@ public class Shop {
     int Shop_money;
     int Shop_number;
     int Shop_goods;
+    public Shop(){}
+
+    public Shop(int shop_id, String shop_name, String shop_address, String shop_boss, String shop_bossp, String shop_phone, String shop_message, int shop_money, int shop_number, int shop_goods) {
+        Shop_id = shop_id;
+        Shop_name = shop_name;
+        Shop_address = shop_address;
+        Shop_boss = shop_boss;
+        Shop_bossp = shop_bossp;
+        Shop_phone = shop_phone;
+        Shop_message = shop_message;
+        Shop_money = shop_money;
+        Shop_number = shop_number;
+        Shop_goods = shop_goods;
+    }
 
     @Override
     public String toString() {

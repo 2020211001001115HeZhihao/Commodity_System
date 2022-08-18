@@ -1,4 +1,4 @@
-package com.example.commodity_system.Servlet;
+package com.example.commodity_system.Servlet.Shop;
 
 import com.example.commodity_system.Dao.GoodsDao;
 import com.example.commodity_system.Dao.HisDao;
@@ -85,7 +85,15 @@ public class Shop_addCartFinishServlet extends HttpServlet {
                 int His_goodsid = goods.getGoods_id();String His_goodsname = goods.getGoods_name();
                 String His_goodstype = goods.getGoods_type();int His_goodsnumber = number;
                 int His_price = sum;String His_time = time;
-                String His_human = shop.getShop_boss();int His_fromid = goods.getGoods_from();
+
+                int sta_header = (int) request.getSession().getAttribute("sta_header");
+                String His_human = shop.getShop_boss();
+                if(sta_header == 1){
+                    Sta sta = (Sta) request.getSession().getAttribute("sta_all");
+                    His_human = sta.getSta_name();
+                }
+
+                int His_fromid = goods.getGoods_from();
                 String His_fromname = goods.getGoods_from2();int His_type = 1;
                 History his = new History(His_id,His_shopid,His_shopname,His_goodsid,His_goodsname,
                         His_goodstype,His_goodsnumber,His_price,His_time,His_human,His_fromid,His_fromname,His_type);

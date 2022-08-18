@@ -82,7 +82,7 @@ public class ProDao {
     }
     //通过姓名查找
     public List<Product> findByName(Connection con,String name, int id) throws SQLException {
-        String sql = "select * from Fac_product where Pro_father = '"+id+"' and Pro_name = '"+name+"'";
+        String sql = "select * from Fac_product where Pro_father = '"+id+"' and Pro_name like '%"+name+"%'";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Product> list = new ArrayList<>();
 
@@ -104,7 +104,7 @@ public class ProDao {
     }
     //通过类型查找
     public List<Product> findByType(Connection con,String type, int id) throws SQLException {
-        String sql = "select * from Fac_product where Pro_father = '"+id+"' and Pro_type = '"+type+"'";
+        String sql = "select * from Fac_product where Pro_father = '"+id+"' and Pro_type like '%"+type+"%'";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Product> list = new ArrayList<>();
 
@@ -168,6 +168,7 @@ public class ProDao {
         }
         return list;
     }
+
     public Product findAllProByid(Connection con,String id) throws SQLException {
         String sql = "select Pro_id,Pro_name,Pro_type,Pro_father,Pro_price,Pro_now,Fac_name from Fac_product,Factory " +
                 "where Pro_father = Fac_id and Pro_id = '"+id+"'";
@@ -188,9 +189,10 @@ public class ProDao {
         }
         return pro;
     }
+
     public List<Product> findAllProByName(Connection con,String name) throws SQLException {
         String sql = "select Pro_id,Pro_name,Pro_type,Pro_father,Pro_price,Pro_now,Fac_name from Fac_product,Factory " +
-                "where Pro_father = Fac_id and Pro_name = '"+name+"'";
+                "where Pro_father = Fac_id and Pro_name like '%"+name+"%'";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Product> list = new ArrayList<>();
 
@@ -210,9 +212,10 @@ public class ProDao {
         }
         return list;
     }
+
     public List<Product> findAllProByType(Connection con,String type) throws SQLException {
         String sql = "select Pro_id,Pro_name,Pro_type,Pro_father,Pro_price,Pro_now,Fac_name from Fac_product,Factory " +
-                "where Pro_father = Fac_id and Pro_type = '"+type+"'";
+                "where Pro_father = Fac_id and Pro_type like '%"+type+"%'";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Product> list = new ArrayList<>();
 
@@ -232,6 +235,7 @@ public class ProDao {
         }
         return list;
     }
+
     public List<Product> findAllProByPrice(Connection con,String price) throws SQLException {
         String sql = "select Pro_id,Pro_name,Pro_type,Pro_father,Pro_price,Pro_now,Fac_name from Fac_product,Factory " +
                 "where Pro_father = Fac_id and Pro_price = '"+price+"'";
@@ -254,9 +258,10 @@ public class ProDao {
         }
         return list;
     }
+
     public List<Product> findAllProByfather2(Connection con,String father2) throws SQLException {
         String sql = "select Pro_id,Pro_name,Pro_type,Pro_father,Pro_price,Pro_now,Fac_name from Fac_product,Factory " +
-                "where Pro_father = Fac_id and Fac_name = '"+father2+"'";
+                "where Pro_father = Fac_id and Fac_name like '%"+father2+"%'";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Product> list = new ArrayList<>();
 

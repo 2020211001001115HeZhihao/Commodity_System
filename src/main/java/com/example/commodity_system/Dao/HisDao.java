@@ -87,8 +87,8 @@ public class HisDao {
     }
 
     public List<History> findAllByShopGoodsName(Connection con,String search,int id) throws SQLException {
-        String sql = "select * from Shop_history where His_shopid = '"+id+"' and His_goodsname = '"+search+
-                "' order by His_time desc";
+        String sql = "select * from Shop_history where His_shopid = '"+id+"' and His_goodsname like '%"+search+
+                "%' order by His_time desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<History> list =  new ArrayList<>();
         while (rs.next()){
@@ -114,8 +114,8 @@ public class HisDao {
     }
 
     public List<History> findAllByShopGoodsType(Connection con,String search,int id) throws SQLException {
-        String sql = "select * from Shop_history where His_shopid = '"+id+"' and His_goodstype = '"+search+
-                "' order by His_time desc";
+        String sql = "select * from Shop_history where His_shopid = '"+id+"' and His_goodstype like '%"+search+
+                "%' order by His_time desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<History> list =  new ArrayList<>();
         while (rs.next()){
@@ -141,8 +141,8 @@ public class HisDao {
     }
 
     public List<History> findAllByShopHuman(Connection con,String search,int id) throws SQLException {
-        String sql = "select * from Shop_history where His_shopid = '"+id+"' and His_human = '"+search+
-                "' order by His_time desc";
+        String sql = "select * from Shop_history where His_shopid = '"+id+"' and His_human like '%"+search+
+                "%' order by His_time desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<History> list =  new ArrayList<>();
         while (rs.next()){
@@ -168,8 +168,8 @@ public class HisDao {
     }
 
     public List<History> findAllByShopFactoryName(Connection con,String search,int id) throws SQLException {
-        String sql = "select * from Shop_history where His_shopid = '"+id+"' and His_fromname = '"+search+
-                "' order by His_time desc";
+        String sql = "select * from Shop_history where His_shopid = '"+id+"' and His_fromname like '%"+search+
+                "%' order by His_time desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<History> list =  new ArrayList<>();
         while (rs.next()){
@@ -221,8 +221,8 @@ public class HisDao {
     }
 
     public List<History> findAllByShopFacGoodsName(Connection con,String search,int id) throws SQLException {
-        String sql = "select * from Shop_history where His_fromid = '"+id+"' and His_goodsname = '"+search+
-                "' and His_type = '1' order by His_time desc";
+        String sql = "select * from Shop_history where His_fromid = '"+id+"' and His_goodsname like '%"+search+
+                "%' and His_type = '1' order by His_time desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<History> list =  new ArrayList<>();
         while (rs.next()){
@@ -248,8 +248,8 @@ public class HisDao {
     }
 
     public List<History> findAllByShopFacGoodsType(Connection con,String search,int id) throws SQLException {
-        String sql = "select * from Shop_history where His_fromid = '"+id+"' and His_goodstype = '"+search+
-                "'  and His_type = '1' order by His_time desc";
+        String sql = "select * from Shop_history where His_fromid = '"+id+"' and His_goodstype like '%"+search+
+                "%'  and His_type = '1' order by His_time desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<History> list =  new ArrayList<>();
         while (rs.next()){
@@ -275,8 +275,8 @@ public class HisDao {
     }
 
     public List<History> findAllByShopFacShopName(Connection con,String search,int id) throws SQLException {
-        String sql = "select * from Shop_history where His_fromid = '"+id+"' and His_shopname = '"+search+
-                "' and His_type = '1'  order by His_time desc";
+        String sql = "select * from Shop_history where His_fromid = '"+id+"' and His_shopname like '%"+search+
+                "%' and His_type = '1'  order by His_time desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<History> list =  new ArrayList<>();
         while (rs.next()){

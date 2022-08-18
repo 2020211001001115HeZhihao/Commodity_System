@@ -120,8 +120,8 @@ public class GoodsDao {
     }
     //通过名称寻找全部
     public List<Goods> findAllByName(Connection con, String search,int id) throws SQLException {
-        String sql = "select * from Shop_goods where Goods_father = '"+id+"' and Goods_name = '"
-        +search+"' order by Goods_now desc";
+        String sql = "select * from Shop_goods where Goods_father = '"+id+"' and Goods_name like '%"
+        +search+"%' order by Goods_now desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Goods> list =  new ArrayList<>();
         while (rs.next()){
@@ -142,8 +142,8 @@ public class GoodsDao {
     }
     //通过名称寻找全部
     public List<Goods> findAllByType(Connection con, String search,int id) throws SQLException {
-        String sql = "select * from Shop_goods where Goods_father = '"+id+"' and Goods_type = '"
-                +search+"' order by Goods_now desc";
+        String sql = "select * from Shop_goods where Goods_father = '"+id+"' and Goods_type like '%"
+                +search+"%' order by Goods_now desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Goods> list =  new ArrayList<>();
         while (rs.next()){
@@ -186,8 +186,8 @@ public class GoodsDao {
     }
     //通过名称寻找全部
     public List<Goods> findAllByFrom2(Connection con, String search,int id) throws SQLException {
-        String sql = "select * from Shop_goods where Goods_father = '"+id+"' and Goods_from2 = '"
-                +search+"' order by Goods_now desc";
+        String sql = "select * from Shop_goods where Goods_father = '"+id+"' and Goods_from2 like '%"
+                +search+"%' order by Goods_now desc";
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Goods> list =  new ArrayList<>();
         while (rs.next()){
