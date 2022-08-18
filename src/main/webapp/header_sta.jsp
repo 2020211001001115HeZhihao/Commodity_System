@@ -24,7 +24,7 @@
                 <div class="design">
                     <a href="Sta_my.jsp" >我的信息</a>
                     <c:if test="${sta_all.getSta_shop() != 0}">
-                        <a href="Shop_main.jsp" >商品展示</a>
+                        <a href="${pageContext.request.contextPath}/HistoryServlet?fir=0&flag=shopmain&page=1" >商品展示</a>
                         <a href="${pageContext.request.contextPath}/HistoryServlet?fir=0&flag=shop&page=1" >账单查询</a>
                     </c:if>
                     <a href="${pageContext.request.contextPath}/Sta_findWorkSearch?flag=0" >寻找工作</a>

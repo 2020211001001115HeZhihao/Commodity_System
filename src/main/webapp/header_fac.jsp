@@ -30,7 +30,7 @@
                 </div>
                 <div class="design">
                     <a href="Fac_my.jsp" >我的信息</a>
-                    <a href="Fac_main.jsp" >商品展示</a>
+                    <a href="${pageContext.request.contextPath}/HistoryServlet?fir=0&flag=facmain&page=1" >商品展示</a>
                     <a href="${pageContext.request.contextPath}/HistoryServlet?fir=0&flag=factory&page=1" >账单查询</a>
                     <a href="exit.jsp" >退出账号</a>
                 </div>

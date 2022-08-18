@@ -89,6 +89,7 @@ public class Shop_saleCartFinishServlet extends HttpServlet {
             List<Goods> list = op_shop.findAllByid(con,id);
             request.getSession().setAttribute("goods_all",list);
             cart.getPromap().clear();
+            request.setAttribute("shopmain_page",1);
             request.getRequestDispatcher("Shop_main.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();

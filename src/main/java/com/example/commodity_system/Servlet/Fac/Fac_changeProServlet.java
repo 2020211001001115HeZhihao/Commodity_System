@@ -42,6 +42,7 @@ public class Fac_changeProServlet extends HttpServlet {
             FacDao op_fac = new FacDao();
             List<Product> list = op_fac.AllPro(con,id);
             request.getSession().setAttribute("pro_all",list);
+            request.setAttribute("facmain_page",1);
             request.getRequestDispatcher("Fac_main.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();

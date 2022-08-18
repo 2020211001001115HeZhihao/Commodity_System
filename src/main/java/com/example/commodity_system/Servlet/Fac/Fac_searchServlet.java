@@ -31,6 +31,7 @@ public class Fac_searchServlet extends HttpServlet {
         ProDao op_pro = new ProDao();
         int id = (int) request.getSession().getAttribute("login_id");
         try {
+            request.setAttribute("facmain_page",1);
             if (search == "") {
                 List<Product> list = null;
                 list = op_fac.AllPro(con, id);

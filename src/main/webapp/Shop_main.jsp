@@ -1,6 +1,7 @@
 <%@ page import="com.example.commodity_system.Model.Goods" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Objects" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -43,7 +44,21 @@
             <th width="100px">单价</th>
             <th width="100px">修改售价</th>
         </tr>
-        <c:forEach items="${goods_all}" var="proall">
+        <%
+            List<Goods> list = (List<Goods>) request.getSession().getAttribute("goods_all");
+            int addpro_page = (int) request.getAttribute("shopmain_page");
+            int list_len = list.size();
+            int max_page = list_len / 15; if(!Objects.equals(list_len%15,0)) max_page = max_page + 1;
+            List<Goods> ans = new ArrayList<>();
+            int left = (addpro_page-1)*15; int right;
+            if(left + 14 >= list_len) right = list_len-1;
+            else right = left+14;
+            for (int i = left ; i <= right;i++){
+                ans.add(list.get(i));
+            }
+            request.setAttribute("ave",ans);
+        %>
+        <c:forEach items="${ave}" var="proall">
             <tr>
                 <td style="padding-left: 5px;padding-top: 5px;padding-bottom: 5px">${proall.getGoods_id()}</td>
                 <td style="padding-left: 10px">${proall.getGoods_name()}</td>
@@ -57,12 +72,33 @@
             </tr>
         </c:forEach>
     </table>
-</div>
+</div><br>
+<style>
+    .Shop_history_button{
+        margin-left: 7px;
+    }
+</style>
+<span style="margin-left: 70px">一共有<span style="color: #2727fd"><%=max_page%></span>页&nbsp;
+        当前第<span style="color: #ff1414"><%=addpro_page%></span>页</span>
+<button class="Shop_history_button" onclick="location.href='${pageContext.request.contextPath}/HistoryServlet?fir=1&flag=shopmain&page=1'">首页</button>
+<button class="Shop_history_button" onclick="prePage()">上一页</button>
+<button class="Shop_history_button" onclick="nextPage()">下一页</button>
+<button class="Shop_history_button" onclick="location.href='${pageContext.request.contextPath}/HistoryServlet?fir=1&flag=shopmain&page=<%=max_page%>'">尾页</button>
 <script type="text/javascript">
     function tc(x) {
         var bi = x;
         var bn = prompt("请输入修改后的价格");
         window.location = "${pageContext.request.contextPath}/Shop_changePriceServlet?bi=" + bi + "&&bn=" + bn ;
+    }
+    var now_page = <%=addpro_page%>;
+    var maxx = <%=max_page%>;
+    function prePage(){
+        if (now_page == 1) alert("已经是首页");
+        else window.location="${pageContext.request.contextPath}/HistoryServlet?fir=1&flag=shopmain&page="+(now_page-1);
+    }
+    function nextPage(){
+        if (now_page == maxx) alert("已经是尾页");
+        else window.location="${pageContext.request.contextPath}/HistoryServlet?fir=1&flag=shopmain&page="+(now_page+1);
     }
 </script>
 <%@include file="footer.jsp"%>

@@ -34,6 +34,7 @@ public class delProServlet extends HttpServlet {
             int idd = (int) request.getSession().getAttribute("login_id");
             List<Product> list = op_fac.AllPro(con,idd);
             request.getSession().setAttribute("pro_all",list);
+            request.setAttribute("facmain_page",1);
             request.getRequestDispatcher("Fac_main.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -35,7 +35,8 @@ public class Shop_changePriceServlet extends HttpServlet {
             op_goods.updatePrice(con,sum,id);
             List<Goods> list = op_shop.findAllByid(con,idd);
             request.getSession().setAttribute("goods_all",list);
-            response.sendRedirect("Shop_main.jsp");
+            request.setAttribute("shopmain_page",1);
+            request.getRequestDispatcher("Shop_main.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();
         }

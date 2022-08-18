@@ -38,30 +38,35 @@ public class Shop_searchServlet extends HttpServlet {
                 List<Goods> list = null;
                 list = op_shop.findAllByid(con, id);
                 request.getSession().setAttribute("goods_all",list);
+                request.setAttribute("shopmain_page",1);
                 request.getRequestDispatcher("Shop_main.jsp").forward(request,response);
             }
             else if(key.equals("name")){
                 List<Goods> list = null;
                 list = op_goods.findAllByName(con,search,id);
                 request.getSession().setAttribute("goods_all",list);
+                request.setAttribute("shopmain_page",1);
                 request.getRequestDispatcher("Shop_main.jsp").forward(request,response);
             }
             else if(key.equals("type")){
                 List<Goods> list = null;
                 list = op_goods.findAllByType(con,search,id);
                 request.getSession().setAttribute("goods_all",list);
+                request.setAttribute("shopmain_page",1);
                 request.getRequestDispatcher("Shop_main.jsp").forward(request,response);
             }
             else if(key.equals("price")){
                 List<Goods> list = null;
                 list = op_goods.findAllByPrice(con,search,id);
                 request.getSession().setAttribute("goods_all",list);
+                request.setAttribute("shopmain_page",1);
                 request.getRequestDispatcher("Shop_main.jsp").forward(request,response);
             }
             else if(key.equals("factory")){
                 List<Goods> list = null;
                 list = op_goods.findAllByFrom2(con,search,id);
                 request.getSession().setAttribute("goods_all",list);
+                request.setAttribute("shopmain_page",1);
                 request.getRequestDispatcher("Shop_main.jsp").forward(request,response);
             }
         }catch (SQLException e) {

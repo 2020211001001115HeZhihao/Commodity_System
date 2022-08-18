@@ -27,7 +27,8 @@ public class Shop_addGoods_firstServlet extends HttpServlet {
         ProDao op_pro = new ProDao();
         try {
             List<Product> list = op_pro.findAllPro(con);
-            request.setAttribute("addGoods",list);
+            request.getSession().setAttribute("addGoods",list);
+            request.setAttribute("add_pro_page",1);
             request.getRequestDispatcher("Shop_addProduct.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();

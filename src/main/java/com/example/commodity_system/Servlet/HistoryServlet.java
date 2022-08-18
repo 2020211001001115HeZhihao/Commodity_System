@@ -1,8 +1,9 @@
 package com.example.commodity_system.Servlet;
 
-import com.example.commodity_system.Dao.GoodsDao;
-import com.example.commodity_system.Dao.HisDao;
+import com.example.commodity_system.Dao.*;
+import com.example.commodity_system.Model.Goods;
 import com.example.commodity_system.Model.History;
+import com.example.commodity_system.Model.Product;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -29,6 +30,8 @@ public class HistoryServlet extends HttpServlet {
         String flag = request.getParameter("flag");
         int id = (int) request.getSession().getAttribute("login_id");
         HisDao op_his = new HisDao();
+        ShopDao op_shop = new ShopDao();
+        FacDao op_fac = new FacDao();
         String fir = request.getParameter("fir");
         int page = Integer.parseInt(request.getParameter("page"));
         try {
@@ -48,6 +51,30 @@ public class HistoryServlet extends HttpServlet {
                 }
                 request.setAttribute("fac_history_page",page);
                 request.getRequestDispatcher("Fac_history.jsp").forward(request,response);
+            }
+            else if(flag.equals("shopmain")){
+                if (Objects.equals(fir,"0")) {
+                    List<Goods> list = op_shop.findAllByid(con,id);
+                    request.getSession().setAttribute("goods_all",list);
+                }
+                request.setAttribute("shopmain_page",page);
+                request.getRequestDispatcher("Shop_main.jsp").forward(request,response);
+            }
+            else if(flag.equals("facmain")){
+                if (Objects.equals(fir,"0")) {
+                    List<Product> list = op_fac.AllPro(con, id);
+                    request.getSession().setAttribute("pro_all",list);
+                }
+                request.setAttribute("facmain_page",page);
+                request.getRequestDispatcher("Fac_main.jsp").forward(request,response);
+            }
+            else if(flag.equals("addProduct")){
+                request.setAttribute("add_pro_page",page);
+                request.getRequestDispatcher("Shop_addProduct.jsp").forward(request,response);
+            }
+            else if(flag.equals("saleProduct")){
+                request.setAttribute("sale_goods_page",page);
+                request.getRequestDispatcher("Shop_saleGoods.jsp").forward(request,response);
             }
         } catch (SQLException e) {
             e.printStackTrace();

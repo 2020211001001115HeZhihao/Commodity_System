@@ -30,6 +30,7 @@ public class Shop_saleGoods_firstServlet extends HttpServlet {
         try {
             List<Goods> list = op_shop.findAllByid(con,id);
             request.getSession().setAttribute("goods_all",list);
+            request.setAttribute("sale_goods_page",1);
             request.getRequestDispatcher("Shop_saleGoods.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();
