@@ -25,7 +25,6 @@ public class StaDao {
         String sql = "insert into Staff values('"+Sta_id+"','"+Sta_name+"','"
                 +Sta_phone+"','"+Sta_sex+"','"+Sta_address+"','"+Sta_shop+"','"
                 +Sta_message+"')";
-        System.out.println(sql);
         try {
             PreparedStatement ps = null;
             ps = con.prepareStatement(sql);
@@ -182,7 +181,6 @@ public class StaDao {
     public List<Sta> findAllShop(Connection con ,int id) throws SQLException {
         String sql = "select * from Staff_employ,Staff where Emp_Shopid = '"+id+
                 "' and Emp_now = '1' and Emp_staffid = Sta_id";
-        System.out.println(sql);
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Sta> list =  new ArrayList<>();
         while (rs.next()){
@@ -203,7 +201,6 @@ public class StaDao {
     public List<Sta> findAllShopByName(Connection con ,String search,int id) throws SQLException {
         String sql = "select * from Staff_employ,Staff where Emp_Shopid = '"+id+
                 "' and Emp_now = '1' and Emp_staffid = Sta_id and Sta_name like '%"+search+"%'";
-        System.out.println(sql);
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<Sta> list =  new ArrayList<>();
         while (rs.next()){

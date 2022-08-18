@@ -35,14 +35,12 @@ public class Sta_findWorkButtonServlet extends HttpServlet {
                 List<Shop> list = op_shop.findAllShop(con);
                 request.setAttribute("searchShop_all",list);
                 request.getRequestDispatcher("Sta_findWork.jsp").forward(request,response);
-                System.out.println(11);
             }
             else {
                 op_sta.FindWork(con,staid,shopid);
                 List<Shop> list = op_shop.findAllShop(con);
                 request.setAttribute("searchShop_all",list);
                 request.getRequestDispatcher("Sta_findWork.jsp").forward(request,response);
-                System.out.println(22);
             }
 
         } catch (SQLException e) {
